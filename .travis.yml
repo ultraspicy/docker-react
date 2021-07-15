@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run -e CI=true ultraspicy/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-1-209322844594"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key:
+    secure: "SECRET_ACCESS_KEY"
